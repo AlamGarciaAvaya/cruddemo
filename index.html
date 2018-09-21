@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/b-1.5.2/b-colvis-1.5.2/fc-3.2.5/fh-3.1.4/sl-1.2.6/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/sc-1.5.0/sl-1.2.6/datatables.min.css"/>
 
     <title>Crud DEMO</title>
   </head>
@@ -27,6 +27,7 @@
    </div>
 
 
+
    <div class="container">
      <div class="card-deck mb-0 text-center">
        <div class="card mb-6 shadow-sm">
@@ -34,7 +35,7 @@
            <h4 class="my-0 font-weight-normal">Customers</h4>
          </div>
          <div class="card-body">
-           <table id="customers-table" class="display" style="width:100%">
+           <table id="customers-table" class="table table-bordered table-striped display" style="width:100%">
         <thead>
             <tr>
                 <th>Account</th>
@@ -56,14 +57,68 @@
           </tr>
         </tfoot>
     </table>
+
          </div>
+         <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#addcustomer">Add</button>
+
+
+         <!-- Modal -->
+<div class="modal fade" id="addcustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Customer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form id="addcustomer-frm" >
+  <div class="form-group">
+    <label for="AccountLabel">Account</label>
+    <input type="number" class="form-control" name="add-account-txt" placeholder="1" required>
+  </div>
+  <div class="form-group">
+    <label for="EmailLabel">Email</label>
+    <input type="email" class="form-control" name="add-email-txt" placeholder="email@test.com" required>
+  </div>
+  <div class="form-group">
+    <label for="FirstNameLabel">First Name</label>
+    <input type="text" class="form-control" name="add-fname-txt" placeholder="John" required>
+  </div>
+  <div class="form-group">
+    <label for="LastnameLabel">Last Name</label>
+    <input type="text" class="form-control" name="add-lname-txt" placeholder="Doe" required>
+  </div>
+  <div class="form-group">
+    <label for="PhoneLabel">Phone</label>
+    <input type="tel" class="form-control" name="add-phone-txt" placeholder="5555-6666" required>
+  </div>
+  <div class="form-group">
+    <label for="PreferneceLabel">Preference</label>
+    <input type="text" class="form-control" name="add-preference-txt" placeholder="Email" required>
+  </div>
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        <input  class="btn btn-success btn-lg" type="submit" value="Save">
+        <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Close</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
        </div>
        <div class="card mb-6 shadow-sm">
          <div class="card-header">
            <h4 class="my-0 font-weight-normal">Customers</h4>
          </div>
          <div class="card-body">
-           <table id="transactions-table" class="display" style="width:100%">
+           <table id="transactions-table" class="table" style="width:100%">
         <thead>
             <tr>
                 <th>ID</th>
@@ -83,6 +138,11 @@
           </tr>
         </tfoot>
     </table>
+    <div class="btn-group btn-group-lg" role="group">...</div>
+    <button type="button" class="btn btn-primary">Add</button>
+    <button type="button" class="btn btn-info">Edit</button>
+    <button type="button" class="btn btn-danger">Delete</button>
+  </div>
          </div>
        </div>
 
@@ -98,17 +158,38 @@
        </div>
      </footer>
    </div>
+
+
+
     <!-- JavaScript -->
-    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/b-1.5.2/b-colvis-1.5.2/fc-3.2.5/fh-3.1.4/sl-1.2.6/datatables.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/sc-1.5.0/sl-1.2.6/datatables.min.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+
 <script>
 
 $(document).ready(function() {
+  var postcustomer = {
+         //target:        '#output1',   // target element(s) to be updated with server response
+         beforeSubmit:  showRequest,  // pre-submit callback
+         success:       showResponse,  // post-submit callback
+         url:       'http://demo8742308.mockable.io/test',         // override for form's 'action' attribute
+         type:      'post' ,       // 'get' or 'post', override for form's 'method' attribute
+         dataType:  'json'        // 'xml', 'script', or 'json' (expected server response type)
+         //clearForm: true        // clear all form fields after successful submit
+         //resetForm: true        // reset the form after successful submit
+
+         // $.ajax options can be used here too, for example:
+         //timeout:   3000
+     };
+
+   $('#addcustomer-frm').ajaxForm(postcustomer);
+  var events = $('#events');
   //Tabla 1
   var customerstbl = $('#customers-table').DataTable({
   	"destroy": "true",
-  	"select": "single",
+
   	"ajax": {
   		"url": "https://135.169.18.7/services/AAADEVURIELPrueba5/MyServlet",
   		"dataSrc": ""
@@ -132,8 +213,10 @@ $(document).ready(function() {
   			"data": "preference"
   		}
   	],
-  	"select": "true"
+  	"select": "single"
   });
+  //Agregar Botones
+
   //FIN Tabla
   //Evento Seleccion tabla 1
   customerstbl.on('select', function (e, dt, type, indexes) {
@@ -169,14 +252,32 @@ $(document).ready(function() {
   	"select": "true"
   });
 
-  transactionstbl.reload();
   transactionstbl.destroy();
 
 
-  });
+  })
+
+  .on( 'deselect', function ( e, dt, type, indexes ) {
+            var rowData = table.rows( indexes ).data().toArray();
+            events.prepend( '<div><b>'+type+' <i>de</i>selection</b> - '+JSON.stringify( rowData )+'</div>' );
+        } );
 
   //Fin evento
   });
+
+
+  // pre-submit callback
+function showRequest(formData, jqForm, options) {
+    var queryString = $.param(formData);
+    alert('About to submit: \n\n' + queryString);
+    return true;
+}
+
+// post-submit callback
+function showResponse(responseText, statusText, xhr, $form)  {
+    alert('status: ' + statusText + '\n\nresponseText: \n' + responseText +
+        '\n\nThe output div should have already been updated with the responseText.');
+}
 </script>
 
   </body>
