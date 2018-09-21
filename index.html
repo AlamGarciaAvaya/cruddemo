@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css">
+
+    <title>Crud DEMO</title>
+  </head>
+  <body>
+
+   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+     <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
+     <nav class="my-2 my-md-0 mr-md-3">
+       <a class="p-2 text-dark" href="#">Features</a>
+       <a class="p-2 text-dark" href="#">Enterprise</a>
+       <a class="p-2 text-dark" href="#">Support</a>
+       <a class="p-2 text-dark" href="#">Pricing</a>
+     </nav>
+     <a class="btn btn-outline-primary" href="#">Sign up</a>
+   </div>
+
+   <div class="pricing-header px-3 pt-md-5 pb-md-4 mx-auto text-center">
+     <h1 class="display-4">Demo</h1>
+   </div>
+
+
+   <div class="container">
+     <div class="card-deck mb-0 text-center">
+       <div class="card mb-6 shadow-sm">
+         <div class="card-header">
+           <h4 class="my-0 font-weight-normal">Customers</h4>
+         </div>
+         <div class="card-body">
+           <table id="customers-table" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Account</th>
+                <th>Email</th>
+                <th>F. Name</th>
+                <th>L. Name</th>
+                <th>Phone</th>
+                <th>Preference</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Account</th>
+                <th>Email</th>
+                <th>F. Name</th>
+                <th>L. Name</th>
+                <th>Phone</th>
+                <th>Preference</th>
+            </tr>
+        </tfoot>
+    </table>
+         </div>
+       </div>
+       <div class="card mb-6 shadow-sm">
+         <div class="card-header">
+           <h4 class="my-0 font-weight-normal">Customers</h4>
+         </div>
+         <div class="card-body">
+           <table id="transactions-table" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Extn.</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Extn.</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </tfoot>
+    </table>
+         </div>
+       </div>
+
+
+     </div>
+
+     <footer class="pt-4 my-md-5 pt-md-5 border-top">
+       <div class="row">
+         <div class="col-12 col-md">
+           <small class="d-block mb-3 text-muted">&copy;Avaya</small>
+         </div>
+
+       </div>
+     </footer>
+   </div>
+    <!-- JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+<script>
+
+$(document).ready(function() {
+  //Tabla 1
+    $('#customers-table').DataTable( {
+        "ajax": {
+            "url": "https://135.169.18.7/services/AAADEVURIELPrueba5/MyServlet",
+            "dataSrc": ""
+        },
+        "columns": [
+            { "data": "accountnum" },
+            { "data": "email" },
+            { "data": "firstname" },
+            { "data": "lastname" },
+            { "data": "phone" },
+            { "data": "preference" }
+        ]
+    } );
+} );
+</script>
+
+  </body>
+</html>
