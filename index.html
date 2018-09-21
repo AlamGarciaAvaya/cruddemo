@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/b-1.5.2/b-colvis-1.5.2/fc-3.2.5/fh-3.1.4/sl-1.2.6/datatables.min.css"/>
 
     <title>Crud DEMO</title>
   </head>
@@ -46,14 +46,14 @@
             </tr>
         </thead>
         <tfoot>
-            <tr>
-                <th>Account</th>
-                <th>Email</th>
-                <th>F. Name</th>
-                <th>L. Name</th>
-                <th>Phone</th>
-                <th>Preference</th>
-            </tr>
+          <tr>
+              <th>Account</th>
+              <th>Email</th>
+              <th>F. Name</th>
+              <th>L. Name</th>
+              <th>Phone</th>
+              <th>Preference</th>
+          </tr>
         </tfoot>
     </table>
          </div>
@@ -66,23 +66,21 @@
            <table id="transactions-table" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Extn.</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>ID</th>
+                <th>Amount</th>
+                <th>Acoount</th>
+                <th>Date</th>
+                <th>Merch. Name</th>
             </tr>
         </thead>
         <tfoot>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Extn.</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
+          <tr>
+              <th>ID</th>
+              <th>Amount</th>
+              <th>Acoount</th>
+              <th>Date</th>
+              <th>Merch. Name</th>
+          </tr>
         </tfoot>
     </table>
          </div>
@@ -103,26 +101,82 @@
     <!-- JavaScript -->
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/b-1.5.2/b-colvis-1.5.2/fc-3.2.5/fh-3.1.4/sl-1.2.6/datatables.min.js"></script>
 <script>
 
 $(document).ready(function() {
   //Tabla 1
-    $('#customers-table').DataTable( {
-        "ajax": {
-            "url": "https://135.169.18.7/services/AAADEVURIELPrueba5/MyServlet",
-            "dataSrc": ""
-        },
-        "columns": [
-            { "data": "accountnum" },
-            { "data": "email" },
-            { "data": "firstname" },
-            { "data": "lastname" },
-            { "data": "phone" },
-            { "data": "preference" }
-        ]
-    } );
-} );
+  var customerstbl = $('#customers-table').DataTable({
+  	"destroy": "true",
+  	"select": "single",
+  	"ajax": {
+  		"url": "https://135.169.18.7/services/AAADEVURIELPrueba5/MyServlet",
+  		"dataSrc": ""
+  	},
+  	"columns": [{
+  			"data": "accountnum"
+  		},
+  		{
+  			"data": "email"
+  		},
+  		{
+  			"data": "firstname"
+  		},
+  		{
+  			"data": "lastname"
+  		},
+  		{
+  			"data": "phone"
+  		},
+  		{
+  			"data": "preference"
+  		}
+  	],
+  	"select": "true"
+  });
+  //FIN Tabla
+  //Evento Seleccion tabla 1
+  customerstbl.on('select', function (e, dt, type, indexes) {
+  var rowData1 = customerstbl.rows(indexes).data().toArray();
+  console.log(rowData1);
+  var account = rowData1["0"].accountnum;
+  console.log("Selected Account: " + account);
+
+
+  var transactionstbl = $('#transactions-table').DataTable({
+  	"destroy": "true",
+  	"select": "single",
+  	"ajax": {
+  		"url": "https://135.169.18.7/services/AAADEVURIELPrueba5/transaction?accountnum=" + account,
+  		"dataSrc": ""
+  	},
+  	"columns": [{
+  			"data": "transid"
+  		},
+  		{
+  			"data": "amount"
+  		},
+  		{
+  			"data": "accountnum"
+  		},
+  		{
+  			"data": "transdate"
+  		},
+  		{
+  			"data": "merchantname"
+  		}
+  	],
+  	"select": "true"
+  });
+
+  transactionstbl.reload();
+  transactionstbl.destroy();
+
+
+  });
+
+  //Fin evento
+  });
 </script>
 
   </body>
