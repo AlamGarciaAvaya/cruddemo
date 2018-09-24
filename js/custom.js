@@ -158,30 +158,6 @@ $(document).ready(function() {
 
   //End Edit form
 
-  //Transactions Add
-  $("#add-transaction-frm").submit(function(event) {
-    var addtransactiondata = JSON.stringify({
-      "transid": "" + $('input#transaction').val() + "",
-      "amount": "" + $('input#ammount').val() + "",
-      "accountnum": "" + $('input#accountnumber').val() + "",
-      "transdate": "" + $('input#transdate').val() + "",
-      "merchantname": "" + $('input#merchantname').val() + ""
-    });
-    event.preventDefault();
-    var xhr = new XMLHttpRequest();
-    xhr.addEventListener("readystatechange", function() {
-      if (this.readyState === 4) {
-        console.log(this.responseText);
-        $('#add-transaction-modal').modal('toggle');
-        $('#success-modal').modal('toggle');
-        transactionstbl.ajax.reload();
-      }
-    });
-    xhr.open("POST", "https://135.169.18.7/services/AAADEVURIELPrueba5/transaction");
-    xhr.send(addtransactiondata);
-  });
-
-  //fin Add
 
 
 
@@ -282,6 +258,31 @@ $(document).ready(function() {
           }
         ]
       });
+
+        //Transactions Add
+        $("#add-transaction-frm").submit(function(event) {
+          var addtransactiondata = JSON.stringify({
+            "transid": "" + $('input#transaction').val() + "",
+            "amount": "" + $('input#ammount').val() + "",
+            "accountnum": "" + $('input#accountnumber').val() + "",
+            "transdate": "" + $('input#transdate').val() + "",
+            "merchantname": "" + $('input#merchantname').val() + ""
+          });
+          event.preventDefault();
+          var xhr = new XMLHttpRequest();
+          xhr.addEventListener("readystatechange", function() {
+            if (this.readyState === 4) {
+              console.log(this.responseText);
+              $('#add-transaction-modal').modal('toggle');
+              $('#success-modal').modal('toggle');
+              transactionstbl.ajax.reload();
+            }
+          });
+          xhr.open("POST", "https://135.169.18.7/services/AAADEVURIELPrueba5/transaction");
+          xhr.send(addtransactiondata);
+        });
+
+        //fin Add
       //Transactions Edit
       $("#edit-transaction-frm").submit(function(event) {
         var updatetransactiondata = JSON.stringify({
@@ -326,16 +327,16 @@ $(document).ready(function() {
         xhr.open("DELETE", "https://135.169.18.7/services/AAADEVURIELPrueba5/transaction");
         xhr.send(deletetransactiondata);
       });
+      customerstbl.on('deselect', function(e, dt, type, indexes) {
+        transactionstbl.clear()
+        transactionstbl.draw();
 
+
+      });
       //fin Edit
     })
 
-    .on('deselect', function(e, dt, type, indexes) {
-      transactionstbl.clear()
-      transactionstbl.draw();
 
-
-    });
 
 
 
