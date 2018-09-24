@@ -17,6 +17,7 @@
          <h1 class="display-4">Demo</h1>
       </div>
       <div class="container">
+
          <div class="card-deck mb-0 text-center">
             <div class="card mb-6 shadow-sm">
                <div class="card-header">
@@ -122,10 +123,80 @@
                   </div>
                </div>
                <!-- Fin Delete Customer Modal -->
+
+               <!-- Modal Add Transactions Modal -->
+               <div class="modal fade" id="add-transaction-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <h5 class="modal-title" id="exampleModalLabel">Add Transaction</h5>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                        </div>
+                        <div class="modal-body">
+                           <form id="add-transaction-frm">
+                              <div class="form-group"> <label for="AccountLabel">Transaction</label> <input type="number" class="form-control" id="transaction" placeholder="1" > </div>
+                              <div class="form-group"> <label for="AmmountLabel"></label>Ammount <input type="number" min="0.00" max="10000.00" step="0.01" class="form-control" id="ammount" placeholder="0.00" > </div>
+                              <div class="form-group"> <label for="AccountLabel"> </label>Account Number <input type="number" class="form-control" id="accountnumber" > </div>
+                              <div class="form-group"> <label for="TransactionLabel"> </label>Transaction Date <input type="date" class="form-control" id="transdate" placeholder="Doe" > </div>
+                              <div class="form-group"> <label for="MerchLabel"></label>Merchant <input type="text" class="form-control" id="merchantname" placeholder="Avaya" > </div>
+                        </div>
+                        <div class="modal-footer"> <input class="btn btn-success btn-lg" type="submit" value="Save"> <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cancel</button>
+                        </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Fin Add Transactions Modal -->
+               <!-- Modal Edit Transactions Modal -->
+               <div class="modal fade" id="edit-transaction-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <h5 class="modal-title" id="exampleModalLabel">Edit Transaction</h5>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                        </div>
+                        <div class="modal-body">
+                          <form id="edit-transaction-frm">
+                             <div class="form-group"> <label for="AccountLabel">Transaction</label> <input type="number" class="form-control" id="transaction-edit" placeholder="1" > </div>
+                             <div class="form-group"> <label for="AmmountLabel"></label>Ammount <input type="number" min="0.00" max="10000.00" step="0.01" class="form-control" id="ammount-edit" placeholder="0.00" > </div>
+                             <div class="form-group"> <label for="AccountLabel"> </label>Account Number <input type="number" class="form-control" id="accountnumber-edit" > </div>
+                             <div class="form-group"> <label for="TransactionLabel"> </label>Transaction Date <input type="date" class="form-control" id="transdate-edit" placeholder="Doe" > </div>
+                             <div class="form-group"> <label for="MerchLabel"></label>Merchant <input type="text" class="form-control" id="merchantname-edit" placeholder="Avaya" > </div>
+                       </div>
+                        <div class="modal-footer"> <input class="btn btn-success btn-lg" type="submit" value="Save"> <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cancel</button>
+                        </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Fin Edit Transactions Modal -->
+               <!-- Modal Delete Transactions Modal -->
+               <div class="modal fade" id="delete-transaction-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <h5 class="modal-title" id="exampleModalLabel">Delete Customer</h5>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                        </div>
+                        <div class="modal-body">
+                          <form id="delete-transaction-frm">
+                             <div class="form-group"> <label for="AccountLabel">Transaction</label> <input type="number" class="form-control" id="transaction-delete" placeholder="1" disabled> </div>
+                             <div class="form-group"> <label for="AmmountLabel"></label>Ammount <input type="number" min="0.00" max="10000.00" step="0.01" class="form-control" id="ammount-delete" placeholder="0.00" disabled> </div>
+                             <div class="form-group"> <label for="AccountLabel"> </label>Account Number <input type="number" class="form-control" id="accountnumber-delete" disabled> </div>
+                             <div class="form-group"> <label for="TransactionLabel"> </label>Transaction Date <input type="date" class="form-control" id="transdate-delete" placeholder="Doe" disabled> </div>
+                             <div class="form-group"> <label for="MerchLabel"></label>Merchant <input type="text" class="form-control" id="merchantname-delete" placeholder="Avaya" disabled> </div>
+                       </div>
+                        <div class="modal-footer"> <input class="btn btn-danger btn-lg" type="submit" value="Delete"> <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cancel</button>
+                        </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Fin Delete Transactions Modal -->
             </div>
             <div class="card mb-6 shadow-sm">
                <div class="card-header">
-                  <h4 class="my-0 font-weight-normal">Customers</h4>
+                  <h4 class="my-0 font-weight-normal">Transactions</h4>
                </div>
                <div class="card-body">
                   <table id="transactions-table" class="table" style="width:100%">
@@ -148,11 +219,10 @@
                         </tr>
                      </tfoot>
                   </table>
-                  <div class="btn-group btn-group-lg" role="group">...</div>
-                  <button type="button" class="btn btn-primary">Add</button>
-                  <button type="button" class="btn btn-info">Edit</button>
-                  <button type="button" class="btn btn-danger">Delete</button>
+
                </div>
+               <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#add-transaction-modal">Add</button>
+
             </div>
          </div>
       </div>
