@@ -21,36 +21,36 @@
          <div class="card-deck mb-0 text-center">
             <div class="card mb-6 shadow-sm">
                <div class="card-header">
-                  <h4 class="my-0 font-weight-normal">Customers</h4>
+                  <h4 class="my-0 font-weight-normal">Transactions</h4>
                </div>
                <div class="card-body">
-                  <table id="customers-table" class="table table-bordered table-striped display" style="width:100%">
-                     <thead>
-                        <tr>
-                           <th>Account</th>
-                           <th>Email</th>
-                           <th>F. Name</th>
-                           <th>L. Name</th>
-                           <th>Phone</th>
-                           <th>Preference</th>
-                        </tr>
-                     </thead>
-                     <tfoot>
-                        <tr>
-                           <th>Account</th>
-                           <th>Email</th>
-                           <th>F. Name</th>
-                           <th>L. Name</th>
-                           <th>Phone</th>
-                           <th>Preference</th>
-                        </tr>
-                     </tfoot>
-                  </table>
+                 <table id="transactions-table" class="table" style="width:100%">
+                    <thead>
+                       <tr>
+                          <th>ID</th>
+                          <th>Amount</th>
+                          <th>Acoount</th>
+                          <th>Date</th>
+                          <th>Merch. Name</th>
+                       </tr>
+                    </thead>
+                    <tfoot>
+                       <tr>
+                          <th>ID</th>
+                          <th>Amount</th>
+                          <th>Acoount</th>
+                          <th>Date</th>
+                          <th>Merch. Name</th>
+                       </tr>
+                    </tfoot>
+                 </table>
+
+
+
+
                </div>
 
-               <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#add-customer-modal">Add</button>
-
-
+               <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#add-transaction-modal">Add</button>
                <!-- Modal Add Customer Modal -->
                <div class="modal fade" id="add-customer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
@@ -167,7 +167,7 @@
                         </form>
                         </div>
                      </div>
-                  </div> 
+                  </div>
                </div>
                <!-- Fin Edit Transactions Modal -->
                <!-- Modal Delete Transactions Modal -->
@@ -196,33 +196,35 @@
             </div>
             <div class="card mb-6 shadow-sm">
                <div class="card-header">
-                  <h4 class="my-0 font-weight-normal">Transactions</h4>
+                  <h4 class="my-0 font-weight-normal">Customers</h4>
                </div>
                <div class="card-body">
-                  <table id="transactions-table" class="table" style="width:100%">
-                     <thead>
-                        <tr>
-                           <th>ID</th>
-                           <th>Amount</th>
-                           <th>Acoount</th>
-                           <th>Date</th>
-                           <th>Merch. Name</th>
-                        </tr>
-                     </thead>
-                     <tfoot>
-                        <tr>
-                           <th>ID</th>
-                           <th>Amount</th>
-                           <th>Acoount</th>
-                           <th>Date</th>
-                           <th>Merch. Name</th>
-                        </tr>
-                     </tfoot>
-                  </table>
+
+                 <table id="customers-table" class="table table-bordered table-striped display" style="width:100%">
+                    <thead>
+                       <tr>
+                          <th>Account</th>
+                          <th>Email</th>
+                          <th>F. Name</th>
+                          <th>L. Name</th>
+                          <th>Phone</th>
+                          <th>Preference</th>
+                       </tr>
+                    </thead>
+                    <tfoot>
+                       <tr>
+                          <th>Account</th>
+                          <th>Email</th>
+                          <th>F. Name</th>
+                          <th>L. Name</th>
+                          <th>Phone</th>
+                          <th>Preference</th>
+                       </tr>
+                    </tfoot>
+                 </table>
 
                </div>
                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#add-transaction-modal">Add</button>
-
             </div>
          </div>
       </div>
