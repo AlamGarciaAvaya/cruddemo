@@ -84,29 +84,23 @@ $(document).ready(function() {
           }).data().toArray();
           var transactionpost = submittransaction["0"].transid;
           console.log(transactionpost);
-          var form = new FormData();
-form.append("family", "AAAMIAMAN");
-form.append("type", "AAAMIAMANCJ");
-form.append("version", "1.0");
-form.append("eventBody", "{\"transid\":\""+ transactionpost +"\"}");
+          var data = new FormData();
+data.append("family", "AAAMIAMAN");
+data.append("type", "AAAMIAMANCJ");
+data.append("version", "1.0");
+data.append("eventBody", "{\"transid\":\""+ transactionpost +"\"}");
 
-var settings = {
-"async": true,
-"crossDomain": true,
-"url": "http://breeze2-213.collaboratory.avaya.com/services/EventingConnector/events",
-"method": "POST",
-"headers": {
-  "Content-Type": "multipart/form-data"
-},
-"processData": false,
-"contentType": false,
-"mimeType": "multipart/form-data",
-"data": form
-}
+var xhr = new XMLHttpRequest();
 
-$.ajax(settings).done(function (response) {
-console.log(response);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    alert('Submit completo');
+  }
 });
+
+xhr.open("POST", "http://breeze2-213.collaboratory.avaya.com/services/EventingConnector/events");
+
+xhr.send(data);
         }
       }
     ]
