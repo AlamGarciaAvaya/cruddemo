@@ -95,8 +95,7 @@ $(document).ready(function() {
                         alert('Submit')
                     }
                 });
-                //xhr.open("POST", "http://breeze2-213.collaboratory.avaya.com/services/EventingConnector/events");
-                xhr.open("POST", "http://demo0512177.mockable.io/post");
+                xhr.open("POST", "http://breeze2-213.collaboratory.avaya.com/services/EventingConnector/events");
                 xhr.send(data)
             }
         }]
