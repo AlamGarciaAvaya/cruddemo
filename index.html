@@ -9,9 +9,6 @@
    </head>
    <body>
 
-
-
-
       <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
          <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
          <nav class="my-2 my-md-0 mr-md-3"> <a class="p-2 text-dark" href="#">Features</a> <a class="p-2 text-dark" href="#">Enterprise</a> <a class="p-2 text-dark" href="#">Support</a> <a class="p-2 text-dark" href="#">Pricing</a> </nav>
@@ -69,7 +66,12 @@
                               <div class="form-group"> <label for="FirstNameLabel">First Name</label> <input type="text" class="form-control" id="firstname" placeholder="John" > </div>
                               <div class="form-group"> <label for="LastnameLabel">Last Name</label> <input type="text" class="form-control" id="lastname" placeholder="Doe" > </div>
                               <div class="form-group"> <label for="PhoneLabel">Phone</label> <input type="tel" class="form-control" id="phone" placeholder="5555-6666" > </div>
-                              <div class="form-group"> <label for="PreferneceLabel">Preference</label> <input type="text" class="form-control" id="preference" placeholder="SMS" > </div>
+                              <div class="form-group"> <label for="PreferneceLabel">Preference</label><select id="preference" class="form-control" >
+                                <option value="sms">SMS</option>
+                                <option value="email">Email</option>
+                                <option value="both">Both</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="modal-footer"> <input class="btn btn-success btn-lg" type="submit" value="Save"> <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cancel</button>
                         </form>
@@ -227,7 +229,7 @@
                  </table>
 
                </div>
-               <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#add-transaction-modal">Add</button>
+               <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#add-customer-modal">Add</button>
             </div>
          </div>
       </div>
