@@ -1,4 +1,10 @@
 $(document).ready(function() {
+
+//Variables Breeze
+  var bfamily = "AAAMIAMAN";
+  var btype = "AAAMIAMANCJ";
+  var bversion = "1.0";
+
     var transactionstbl = $('#transactions-table').DataTable({
         "destroy": "true",
         "ajax": {
@@ -79,9 +85,9 @@ $(document).ready(function() {
                 var transactionpost = submittransaction["0"].transid;
                 console.log(transactionpost);
                 var data = new FormData();
-                data.append("family", "AAAMIAMAN");
-                data.append("type", "AAAMIAMANCJ");
-                data.append("version", "1.0");
+                data.append("family", bfamily);
+                data.append("type", btype);
+                data.append("version", bversion );
                 data.append("eventBody", "{\"transid\":\"" + transactionpost + "\"}");
                 var xhr = new XMLHttpRequest();
                 xhr.addEventListener("readystatechange", function() {
@@ -89,7 +95,8 @@ $(document).ready(function() {
                         alert('Submit')
                     }
                 });
-                xhr.open("POST", "http://breeze2-213.collaboratory.avaya.com/services/EventingConnector/events");
+                //xhr.open("POST", "http://breeze2-213.collaboratory.avaya.com/services/EventingConnector/events");
+                xhr.open("POST", "http://demo0512177.mockable.io/post");
                 xhr.send(data)
             }
         }]
@@ -157,10 +164,8 @@ $(document).ready(function() {
         var rowData1 = transactionstbl.rows(indexes).data().toArray();
         var account = rowData1["0"].accountnum;
         console.log("Selected Account: " + account);
-
         valuesearch =  rowData1["0"].accountnum ;
         customerstbl.column(0).search(valuesearch, true, false).draw();
-
 
         transactionstbl.on('deselect', function(e, dt, type, indexes) {
           customerstbl.column(0).search("", true, false).draw();
