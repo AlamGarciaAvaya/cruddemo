@@ -95,7 +95,12 @@
                               <div class="form-group"> <label for="FirstNameLabel">First Name</label> <input type="text" class="form-control" id="firstname-edit" placeholder="John" > </div>
                               <div class="form-group"> <label for="LastnameLabel">Last Name</label> <input type="text" class="form-control" id="lastname-edit" placeholder="Doe" > </div>
                               <div class="form-group"> <label for="PhoneLabel">Phone</label> <input type="tel" class="form-control" id="phone-edit" placeholder="5555-6666-edit" > </div>
-                              <div class="form-group"> <label for="PreferneceLabel">Preference</label> <input type="text" class="form-control" id="preference-edit" placeholder="SMS" > </div>
+                              <div class="form-group"> <label for="PreferneceLabel">Preference</label><select id="preference-edit" class="form-control" >
+                                <option value="sms">SMS</option>
+                                <option value="email">Email</option>
+                                <option value="both">Both</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="modal-footer"> <input class="btn btn-success btn-lg" type="submit" value="Save"> <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cancel</button>
                         </form>
