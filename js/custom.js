@@ -4,6 +4,13 @@ $(document).ready(function() {
   var bfamily = "AAAMIAMAN";
   var btype = "AAAMIAMANCJ";
   var bversion = "1.0";
+  //EndPoint para petición Breeze
+  var endpoint = "http://breeze2-213.collaboratory.avaya.com/services/EventingConnector/events";
+  //EndPoint para obtener Datos transaction
+  var endpoint1 =  "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/transaction";
+  //EndPoint para obtener Datos customer
+  var endpoint2 =  "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/customer";
+
   //Fin Variables Breeze
 //Definimos DataTable de Transacción
   var transactionstbl = $('#transactions-table').DataTable({
@@ -12,7 +19,7 @@ $(document).ready(function() {
     "destroy": "true",
     //Definimos Origen de Datos
     "ajax": {
-      "url": "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/transaction",
+      "url": endpoint1,
       "dataSrc": ""
     },
     //Definimos Columnas de acuerdo al JSON
@@ -53,7 +60,7 @@ $(document).ready(function() {
             //XSS
           "crossDomain": !0,
             //endpoint y concatenamos el valor del ID
-          "url": "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/transaction?transid=" + edittransaction["0"].transid,
+          "url": endpoint1 + "?transid=" + edittransaction["0"].transid,
             //Tipo
           "method": "GET"
         }
@@ -87,7 +94,7 @@ $(document).ready(function() {
         var getaccount = {
           "async": !0,
           "crossDomain": !0,
-          "url": "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/transaction?transid=" + deletetransaction["0"].transid,
+          "url": endpoint1 + "?transid=" + deletetransaction["0"].transid,
           "method": "GET"
         }
         $.ajax(getaccount).done(function(response) {
@@ -110,6 +117,7 @@ $(document).ready(function() {
         }).data().toArray();
         var transactionpost = submittransaction["0"].transid;
         console.log(transactionpost);
+        //Post a Breeze
         var data = new FormData();
         data.append("family", bfamily);
         data.append("type", btype);
@@ -121,8 +129,9 @@ $(document).ready(function() {
             alert('Submit')
           }
         });
-        xhr.open("POST", "http://breeze2-213.collaboratory.avaya.com/services/EventingConnector/events");
+        xhr.open("POST", endpoint);
         xhr.send(data)
+        //Post a Breeze
       }
     }]
   });
@@ -144,7 +153,7 @@ $(document).ready(function() {
         transactionstbl.ajax.reload()
       }
     });
-    xhr.open("POST", "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/transaction");
+    xhr.open("POST", endpoint1);
     xhr.send(addtransactiondata)
   });
   $("#edit-transaction-frm").submit(function(event) {
@@ -165,7 +174,7 @@ $(document).ready(function() {
         transactionstbl.ajax.reload()
       }
     });
-    xhr.open("PUT", "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/transaction");
+    xhr.open("PUT", endpoint1);
     xhr.send(updatetransactiondata)
   });
   $("#delete-transaction-frm").submit(function(event) {
@@ -182,7 +191,7 @@ $(document).ready(function() {
         transactionstbl.ajax.reload()
       }
     });
-    xhr.open("DELETE", "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/transaction");
+    xhr.open("DELETE", endpoint1);
     xhr.send(deletetransactiondata)
   });
   transactionstbl.on('select', function(e, dt, type, indexes) {
@@ -199,7 +208,7 @@ $(document).ready(function() {
   var customerstbl = $('#customers-table').DataTable({
     "destroy": "true",
     "ajax": {
-      "url": "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/customer?accountnum",
+      "url": endpoint2+"?accountnum",
       "dataSrc": ""
     },
     "columns": [{
@@ -228,7 +237,7 @@ $(document).ready(function() {
         var getaccount = {
           "async": !0,
           "crossDomain": !0,
-          "url": "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/customer?accountnum=" + editcustomer["0"].accountnum,
+          "url": endpoint2+"?accountnum=" + editcustomer["0"].accountnum,
           "method": "GET"
         }
         $.ajax(getaccount).done(function(response) {
@@ -254,7 +263,7 @@ $(document).ready(function() {
         var getaccount = {
           "async": !0,
           "crossDomain": !0,
-          "url": "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/customer?accountnum=" + deletetrans["0"].accountnum,
+          "url": endpoint2+"?accountnum=" + deletetrans["0"].accountnum,
           "method": "GET"
         }
         $.ajax(getaccount).done(function(response) {
@@ -290,7 +299,7 @@ $(document).ready(function() {
         customerstbl.ajax.reload()
       }
     });
-    xhr.open("POST", "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/customer");
+    xhr.open("POST", endpoint2);
     xhr.send(postnewcustomerdata)
   });
   $("#edit-customer-frm").submit(function(event) {
@@ -312,7 +321,7 @@ $(document).ready(function() {
         customerstbl.ajax.reload()
       }
     });
-    xhr.open("PUT", "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/customer");
+    xhr.open("PUT", endpoint2);
     xhr.send(updatecustomerdata)
   });
   $("#delete-customer-frm").submit(function(event) {
@@ -329,7 +338,7 @@ $(document).ready(function() {
         customerstbl.ajax.reload()
       }
     });
-    xhr.open("DELETE", "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/customer");
+    xhr.open("DELETE", endpoint2);
     xhr.send(deletecustomerdata)
   })
 })
