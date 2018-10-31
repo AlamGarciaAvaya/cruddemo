@@ -151,7 +151,7 @@ $("#output").hide();
         data.append("family", bfamily);
         data.append("type", btype);
         data.append("version", bversion);
-        data.append("eventBody", "{\"transid\":\"" + transactionpost + "language\":\"" +language "\"}");
+        ddata.append("eventBody", "{\"transid\":\""+ transactionpost +"\",\"language\":\""+ language +"\"}");
         var xhr = new XMLHttpRequest();
         xhr.addEventListener("readystatechange", function() {
           if (this.readyState === 4) {
