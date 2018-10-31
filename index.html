@@ -12,7 +12,7 @@
       <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
          <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
          <nav class="my-2 my-md-0 mr-md-3"> <a class="p-2 text-dark" href="#">Features</a> <a class="p-2 text-dark" href="#">Enterprise</a> <a class="p-2 text-dark" href="#">Support</a> <a class="p-2 text-dark" href="#">Pricing</a> </nav>
-         <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#settingsmodal">
+         <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#settings-modal">
 Settings
 </button>
       </div>
@@ -246,6 +246,8 @@ Settings
          </div>
       </footer>
       </div>
+
+
       <div class="modal" tabindex="-1" role="dialog" id="success-modal">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -261,7 +263,32 @@ Settings
          </div>
       </div>
 
+      <!-- Modal Settings -->
+<div class="modal fade" id="settings-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <select class="custom-select" id="lang-select" aria-label="Example select with button addon">
+            <option selected>Choose...</option>
+            <option value="es-MX">Español</option>
+            <option value="pt-BR">Portuguese</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" id="savesettings-btn" type="button">Save</button>
+          </div>
+        </div>
+      </div>
 
+    </div>
+  </div>
+</div>
 
       <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
       <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
