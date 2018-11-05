@@ -5,11 +5,11 @@ $(document).ready(function() {
   var btype = "AAAMIAMANCJ";
   var bversion = "1.0";
   //EndPoint para petición Breeze
-  var endpoint = "http://breeze2-213.collaboratory.avaya.com/services/EventingConnector/events";
+  var endpoint = "https://breeze2-213.collaboratory.avaya.com/services/EventingConnector/events";
   //EndPoint para obtener Datos transaction
-  var endpoint1 =  "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/transaction";
+  var endpoint1 =  "https://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/transaction";
   //EndPoint para obtener Datos customer
-  var endpoint2 =  "http://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/customer";
+  var endpoint2 =  "https://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/customer";
 
   //Fin Variables Breeze
 //Definimos DataTable de Transacción
