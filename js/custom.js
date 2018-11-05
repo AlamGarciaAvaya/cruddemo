@@ -14,7 +14,7 @@ $(document).ready(function() {
 //Defiimos cookie para datastorage
   var localData = localDataStorage('crud.data');
   var language = localData.get('language_v');
-
+ 
 //Definimos idioma por default
 
 if (language == null || language == 0) {
