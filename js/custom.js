@@ -11,6 +11,34 @@ $(document).ready(function() {
   //EndPoint para obtener Datos customer
   var endpoint2 =  "https://breezex7-213.collaboratory.avaya.com/services/AAAMIADBWEBSERVICE/customer";
 
+//Defiimos cookie para datastorage
+  var localData = localDataStorage('crud.data');
+  var language = localData.get('language_v');
+
+//Definimos idioma por default
+
+if (language == null || language == 0) {
+localData.set('language_v', "es-MX");
+$("#output").hide();
+} else {
+  var language = localData.get('language_v');
+
+}
+
+//Handler de Datos
+  $( "#savesettings-btn" ).click(function() {
+
+    $('#settings-modal').modal('toggle');
+    var language = $( "#lang-select" ).val();
+    console.log(language);
+    localData.set('language_v', language);
+
+
+    $('#success-modal').modal('toggle');
+
+
+});
+//Fin Handler
   //Fin Variables Breeze
 //Definimos DataTable de Transacción
   var transactionstbl = $('#transactions-table').DataTable({
@@ -119,10 +147,11 @@ $(document).ready(function() {
         console.log(transactionpost);
         //Post a Breeze
         var data = new FormData();
+        var language = localData.get('language_v');
         data.append("family", bfamily);
         data.append("type", btype);
         data.append("version", bversion);
-        data.append("eventBody", "{\"transid\":\"" + transactionpost + "\"}");
+        ddata.append("eventBody", "{\"transid\":\""+ transactionpost +"\",\"language\":\""+ language +"\"}");
         var xhr = new XMLHttpRequest();
         xhr.addEventListener("readystatechange", function() {
           if (this.readyState === 4) {
