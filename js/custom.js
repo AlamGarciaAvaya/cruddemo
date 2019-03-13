@@ -86,15 +86,17 @@ $("#output").hide();
             //XSS
           "crossDomain": !0,
             //endpoint y concatenamos el valor del ID
-          "url": endpoint1 + "?transid=" + edittransaction["0"].transid,
+          "url": endpoint1 + "?id=" + edittransaction["0"].transid,
             //Tipo
           "method": "GET"
         }
         //Ejecutamos el Request de Ajax
         $.ajax(gettransaction).done(function(response) {
+          console.log("Obteniendo informacion de la trans.");
+          console.log(response);
           //Cuando termina de obtener datos
           //El valor obtenido lo Parseamos a un objeot JSON
-          var dataaccount = JSON.parse(response);
+          var dataaccount = response;
           //Debug del Repsonse
           console.log("Selected Transaction to Edit:");
           console.log(dataaccount);
@@ -124,7 +126,7 @@ $("#output").hide();
           "method": "GET"
         }
         $.ajax(getaccount).done(function(response) {
-          var dataaccount = JSON.parse(response);
+          var dataaccount = response;
           console.log(dataaccount);
           $('#delete-transaction-modal').modal('toggle');
           $('#transaction-delete').val(dataaccount["0"].transid);
@@ -235,7 +237,7 @@ $("#output").hide();
   var customerstbl = $('#customers-table').DataTable({
     "destroy": "true",
     "ajax": {
-      "url": endpoint2+"?accountnum",
+      "url": endpoint2+"?id",
       "dataSrc": ""
     },
     "columns": [{
@@ -264,12 +266,14 @@ $("#output").hide();
         var getaccount = {
           "async": !0,
           "crossDomain": !0,
-          "url": endpoint2+"?accountnum=" + editcustomer["0"].accountnum,
+          "url": endpoint2+"?id=" + editcustomer["0"].accountnum,
           "method": "GET"
         }
         $.ajax(getaccount).done(function(response) {
-          console.log(response);
+          console.log("Obteniendo datos de la cuenta");
+
           var dataaccount = JSON.parse(response);
+          console.log(dataaccount);
           $('#edit-customer-modal').modal('toggle');
           $('#accountnum-edit').val(dataaccount["0"].accountnum);
           $('#email-edit').val(dataaccount["0"].email);
@@ -290,7 +294,7 @@ $("#output").hide();
         var getaccount = {
           "async": !0,
           "crossDomain": !0,
-          "url": endpoint2+"?accountnum=" + deletetrans["0"].accountnum,
+          "url": endpoint2+"?id=" + deletetrans["0"].accountnum,
           "method": "GET"
         }
         $.ajax(getaccount).done(function(response) {
