@@ -1,44 +1,83 @@
 $(document).ready(function() {
 
+  //Definimos cookie para datastorage
+  var localData = localDataStorage('crud.data');
+  //Obtenemos valores de DataStorage
+  var endpoint = localData.get('endpoint_v');
+  var endpoint1 = localData.get('endpoint1_v');
+  var endpoint2 = localData.get('endpoint2_v');
+
   //Variables Breeze
   var bfamily = "AAAMIAMAN";
   var btype = "AAAMIAMANCJ";
   var bversion = "1.0";
-  //EndPoint para petición Breeze
-  var endpoint = "https://breeze2-132.collaboratory.avaya.com/services/EventingConnector/events";
-  //EndPoint para obtener Datos transaction
-  var endpoint1 =  "https://breeze2-132.collaboratory.avaya.com/services/AAADEVEXCRUD/transaction";
-  //EndPoint para obtener Datos customer
-  var endpoint2 =  "https://breeze2-132.collaboratory.avaya.com/services/AAADEVEXCRUD/customer";
 
-//Defiimos cookie para datastorage
-  var localData = localDataStorage('crud.data');
-  var language = localData.get('language_v');
+  //Definimos idioma por default
 
-//Definimos idioma por default
+  if (language == null || language == 0) {
+    localData.set('language_v', "es-MX");
+    $("#output").hide();
+  } else {
+    var language = localData.get('language_v');
+  }
 
-if (language == null || language == 0) {
-localData.set('language_v', "es-MX");
-$("#output").hide();
-} else {
-  var language = localData.get('language_v');
+  //Definimos endpoint por default
 
-}
+  if (endpoint == null || endpoint == 0) {
+    localData.set('endpoint_v', "https://breeze2-132.collaboratory.avaya.com/services/EventingConnector/events");
+    $("#output").hide();
+  } else {
+    var endpoint = localData.get('endpoint_v');
 
-//Handler de Datos
-  $( "#savesettings-btn" ).click(function() {
+  }
+
+  //Definimos endpoint por default
+
+  if (endpoint1 == null || endpoint1 == 0) {
+    localData.set('endpoint1_v', "https://breeze2-132.collaboratory.avaya.com/services/AAADEVEXCRUD/transaction");
+    $("#output").hide();
+  } else {
+    var endpoint1 = localData.get('endpoint1_v');
+
+  }
+
+  //Definimos endpoint por default
+
+  if (endpoint2 == null || endpoint2 == 0) {
+    localData.set('endpoint2_v', "https://breeze2-132.collaboratory.avaya.com/services/AAADEVEXCRUD/customer");
+    $("#output").hide();
+  } else {
+    var endpoint2 = localData.get('endpoint2_v');
+
+  }
+
+
+  $("#endpoint-url").val(endpoint);
+  $("#endpoint1-url").val(endpoint1);
+  $("#endpoint2-url").val(endpoint2);
+  //Handler de Datos
+  $("#savesettings-btn").click(function() {
 
     $('#settings-modal').modal('toggle');
-    var language = $( "#lang-select" ).val();
+    var language = $("#lang-select").val();
+    var endpoint = $("#endpoint-url").val();
+    var endpoint1 = $("#endpoint1-url").val();
+    var endpoint2 = $("#endpoint2-url").val();
     console.log(language);
+    console.log(endpoint);
+    console.log(endpoint1);
+    console.log(endpoint2);
     localData.set('language_v', language);
+    localData.set('endpoint_v', endpoint);
+    localData.set('endpoint1_v', endpoint1);
+    localData.set('endpoint2_v', endpoint2);
     $('#success-modal').modal('toggle');
 
 
-});
-//Fin Handler
+  });
+  //Fin Handler
   //Fin Variables Breeze
-//Definimos DataTable de Transacción
+  //Definimos DataTable de Transacción
   var transactionstbl = $('#transactions-table').DataTable({
     //Definimos los ajustes de DataTable
     //Podemos Destruir para redibujar después
@@ -79,15 +118,15 @@ $("#output").hide();
         //imprimimos en consola el valor seleccionado
         console.log(edittransaction["0"].transid);
         //Obtenemos la transaccion con un Request AJAX
-          //Definimos el Objeto para el Request
+        //Definimos el Objeto para el Request
         var gettransaction = {
-            //Async
+          //Async
           "async": !0,
-            //XSS
+          //XSS
           "crossDomain": !0,
-            //endpoint y concatenamos el valor del ID
+          //endpoint y concatenamos el valor del ID
           "url": endpoint1 + "?id=" + edittransaction["0"].transid,
-            //Tipo
+          //Tipo
           "method": "GET"
         }
         //Ejecutamos el Request de Ajax
@@ -151,7 +190,7 @@ $("#output").hide();
         data.append("family", bfamily);
         data.append("type", btype);
         data.append("version", bversion);
-        ddata.append("eventBody", "{\"transid\":\""+ transactionpost +"\",\"language\":\""+ language +"\"}");
+        ddata.append("eventBody", "{\"transid\":\"" + transactionpost + "\",\"language\":\"" + language + "\"}");
         var xhr = new XMLHttpRequest();
         xhr.addEventListener("readystatechange", function() {
           if (this.readyState === 4) {
@@ -237,7 +276,7 @@ $("#output").hide();
   var customerstbl = $('#customers-table').DataTable({
     "destroy": "true",
     "ajax": {
-      "url": endpoint2+"?id",
+      "url": endpoint2 + "?id",
       "dataSrc": ""
     },
     "columns": [{
@@ -266,7 +305,7 @@ $("#output").hide();
         var getaccount = {
           "async": !0,
           "crossDomain": !0,
-          "url": endpoint2+"?id=" + editcustomer["0"].accountnum,
+          "url": endpoint2 + "?id=" + editcustomer["0"].accountnum,
           "method": "GET"
         }
         $.ajax(getaccount).done(function(response) {
@@ -294,7 +333,7 @@ $("#output").hide();
         var getaccount = {
           "async": !0,
           "crossDomain": !0,
-          "url": endpoint2+"?id=" + deletetrans["0"].accountnum,
+          "url": endpoint2 + "?id=" + deletetrans["0"].accountnum,
           "method": "GET"
         }
         $.ajax(getaccount).done(function(response) {

@@ -274,16 +274,39 @@ Settings
         </button>
       </div>
       <div class="modal-body">
+
         <div class="input-group">
           <select class="custom-select" id="lang-select" aria-label="Example select with button addon">
             <option selected>Choose...</option>
             <option value="es-MX">Español</option>
             <option value="pt-BR">Portuguese</option>
           </select>
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" id="savesettings-btn" type="button">Save</button>
-          </div>
         </div>
+
+        <label for="basic-url">EndPoints</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">EventConnector</span>
+          </div>
+          <input type="text" class="form-control" id="endpoint-url" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">Transactions</span>
+          </div>
+          <input type="text" class="form-control" id="endpoint1-url" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">Customers</span>
+          </div>
+          <input type="text" class="form-control" id="endpoint2-url" aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" id="savesettings-btn" type="button">Save</button>
+        </div>
+
       </div>
 
     </div>
