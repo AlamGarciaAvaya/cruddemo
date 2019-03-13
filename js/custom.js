@@ -122,7 +122,7 @@ $("#output").hide();
         var getaccount = {
           "async": !0,
           "crossDomain": !0,
-          "url": endpoint1 + "?transid=" + deletetransaction["0"].transid,
+          "url": endpoint1 + "?id=" + deletetransaction["0"].transid,
           "method": "GET"
         }
         $.ajax(getaccount).done(function(response) {
